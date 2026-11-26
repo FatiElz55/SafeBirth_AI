@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-ivory text-charcoal font-sans;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  * {
+    border-color: theme('colors.burgundy.100');
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-ivory rounded-xl border border-burgundy-100 shadow-card;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-burgundy-500 text-white font-semibold text-sm transition-all hover:bg-burgundy-600 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed shadow-soft;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-white text-burgundy-700 border border-burgundy-200 font-semibold text-sm transition-all hover:bg-blush active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-charcoal font-medium text-sm transition-all hover:bg-blush active:scale-[0.98];
+  }
+  .input-field {
+    @apply w-full px-4 py-2.5 rounded-lg border border-burgundy-100 bg-white text-charcoal text-sm transition-all placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-burgundy-200 focus:border-burgundy-400;
+  }
+  .label-field {
+    @apply block text-sm font-semibold text-charcoal mb-1.5;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #E0A7BD;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D98FA8;
+}
+
+/* Recharts text color */
+.recharts-text {
+  fill: #897D83;
+  font-size: 12px;
+}
+.recharts-cartesian-axis-line,
+.recharts-cartesian-axis-tick-line {
+  stroke: #E0A7BD;
+}
+.recharts-cartesian-grid line {
+  stroke: #F8E9EF;
+}
