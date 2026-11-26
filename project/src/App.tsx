@@ -31,11 +31,13 @@ const pageMeta: Record<PageKey, { title: string; subtitle: string }> = {
 
 function App() {
   const [page, setPage] = useState<PageKey>('dashboard');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [patients, setPatients] = useState<Patient[]>(demoPatients);
   const [assessments, setAssessments] = useState<Assessment[]>(demoAssessments);
 
   function handleNavigate(p: PageKey) {
     setPage(p);
+    setSidebarOpen(false);
   }
 
   function handleAddPatient(p: Patient) {
@@ -50,10 +52,27 @@ function App() {
 
   return (
     <div className="min-h-screen bg-ivory">
-      <Sidebar current={page} onNavigate={handleNavigate} />
-      <div className="ml-64 flex min-h-screen flex-col">
-        <TopNav title={meta.title} subtitle={meta.subtitle} />
-        <main className="flex-1 px-8 py-6">
+      {sidebarOpen && (
+        <button
+          type="button"
+          aria-label="Close navigation"
+          className="fixed inset-0 z-30 bg-charcoal/40 backdrop-blur-sm lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+      <Sidebar
+        current={page}
+        open={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        onNavigate={handleNavigate}
+      />
+      <div className="flex min-h-screen flex-col lg:ml-64">
+        <TopNav
+          title={meta.title}
+          subtitle={meta.subtitle}
+          onOpenMenu={() => setSidebarOpen(true)}
+        />
+        <main className="flex-1 px-4 py-4 sm:px-6 sm:py-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             {page === 'dashboard' && (
               <DashboardPage

@@ -1,16 +1,25 @@
-import { Bell, Search, ChevronDown } from 'lucide-react';
+import { Bell, Search, ChevronDown, Menu } from 'lucide-react';
 import { useState } from 'react';
 
 interface TopNavProps {
   title: string;
   subtitle?: string;
+  onOpenMenu: () => void;
 }
 
-export function TopNav({ title, subtitle }: TopNavProps) {
+export function TopNav({ title, subtitle, onOpenMenu }: TopNavProps) {
   const [notifOpen, setNotifOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b border-burgundy-100 bg-ivory/90 px-8 backdrop-blur-md">
+    <header className="sticky top-0 z-30 flex h-16 items-center gap-2 border-b border-burgundy-100 bg-ivory/90 px-4 backdrop-blur-md sm:gap-4 sm:px-6 lg:px-8">
+      <button
+        type="button"
+        aria-label="Open menu"
+        onClick={onOpenMenu}
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-burgundy-100 text-charcoal hover:bg-blush lg:hidden"
+      >
+        <Menu className="h-5 w-5" />
+      </button>
       <div className="min-w-0 flex-1">
         <h1 className="font-display text-lg font-bold text-charcoal tracking-tight truncate">
           {title}
